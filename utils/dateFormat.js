@@ -1,7 +1,7 @@
 const addDateSuffix = (date) => {
-    let dateStr = date.tString();
+    let dateStr = date.toString();
 
-    const lastChar = dateStr.chatAt(dateStr.length - 1);
+    const lastChar = dateStr.charAt(dateStr.length - 1);
 
     if (lastChar === '1' && dateStr !== '11') {
         dateStr = `${dateStr}st`;
@@ -18,7 +18,7 @@ const addDateSuffix = (date) => {
 
 module.exports = (
     timestamp,
-    { monthLength = 'short', addDateSuffix = true } = {}
+    { monthLength = 'short', dateSuffix = true } = {}
 ) => {
     const months = {
         0: monthLength === 'short' ? 'Jan' : 'January',
@@ -41,7 +41,7 @@ module.exports = (
     const dayOfMonth = dateSuffix
         ? addDateSuffix(dateObj.getDate())
         : dateObj.getDate();
-    const year = dateObj.getFullYeat();
+    const year = dateObj.getFullYear();
     let hour = dateObj.getHours() > 12
         ? Math.floor(dateObj.getHours() - 12)
         : dateObj.getHours();
